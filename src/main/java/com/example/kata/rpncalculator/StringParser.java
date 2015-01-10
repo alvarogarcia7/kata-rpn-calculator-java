@@ -12,15 +12,19 @@ public class StringParser {
 			return parseSubString(operationChain, 0);
 		} else if(operationChain.length() == TWO_EXPRESSIONS_LENGTH){
 			return new OperationTree(
-					Operator.from(operationChain.charAt(8)),
+					lastOperator(operationChain),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
 					parseSubString(operationChain, 0));
 		} else {
 			OperationTree tree1 = parseSubString(operationChain, 0);
 			OperationTree tree2 = parseSubString(operationChain, 6);
-			return new OperationTree(Operator.MINUS, tree1, tree2);
+			return new OperationTree(lastOperator(operationChain), tree1, tree2);
 		}
 
+	}
+
+	private Operator lastOperator(String operationChain) {
+		return Operator.from(operationChain.charAt(operationChain.length() - 1));
 	}
 
 	private int parseNumber(char character) {
