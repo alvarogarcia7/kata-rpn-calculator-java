@@ -34,4 +34,9 @@ public class StringParserShould {
 	public void parse_two_numbers_and_the_sum() {
 		assertThat(sut.parse("1 3 +"), equalTo(TREE_1_3.withOperator(SUM).build()));
 	}
+
+	@Test
+	public void parse_two_numbers_and_the_minus() {
+		assertThat(sut.parse("1 3 -"), equalTo(TREE_1_3.withOperator(MINUS).build()));
+	}
 }
