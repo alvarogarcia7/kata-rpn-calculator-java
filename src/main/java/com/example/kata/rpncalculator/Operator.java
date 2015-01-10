@@ -25,4 +25,12 @@ public enum  Operator {
 		return TIMES;
 	}
 
+	public static boolean isOne(String token) {
+		for (Operator current : values()) {
+			if(token.charAt(0) == current.representation){
+				return true;
+			}
+		}
+		return false;
+	}
 }

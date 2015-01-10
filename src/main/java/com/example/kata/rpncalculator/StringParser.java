@@ -1,5 +1,7 @@
 package com.example.kata.rpncalculator;
 
+import java.util.Stack;
+
 /**
  * Created by alvaro on 10/01/15.
  */
@@ -11,7 +13,7 @@ public class StringParser {
 		OperationTree parsedInStack = parseInAStack(operationChain);
 		OperationTree operationTree;
 		if(operationChain.length() < TWO_EXPRESSIONS_LENGTH) {
-			operationTree = parseSubString(operationChain, 0);
+			return parsedInStack;
 		} else if(operationChain.length() == TWO_EXPRESSIONS_LENGTH){
 			operationTree=new OperationTree(
 					lastOperator(operationChain),
@@ -23,16 +25,35 @@ public class StringParser {
 			operationTree = new OperationTree(lastOperator(operationChain), tree1, tree2);
 		}
 
-		if(operationTree.equals(parsedInStack)){
-			return parsedInStack;
-		}
-
 		return operationTree;
 
 	}
 
 	private OperationTree parseInAStack(String operationChain) {
-		return null;
+		String[] parts = operationChain.split(" +");
+		Stack<String> stack = new Stack<>();
+		for (String current : parts) {
+			stack.push(current);
+		}
+		while (!stack.isEmpty()){
+			String current = stack.pop();
+			if(isOperator(current)){
+				String operand1 = stack.pop();
+				String operand2 = stack.pop();
+				try {
+					return new OperationTree(Operator.from(current.charAt(0)),
+							Expression.constant(parseNumber(operand2)),
+							Expression.constant(parseNumber(operand1)));
+				}catch (NumberFormatException e){
+					return OperationTree.EMPTY;
+				}
+			}
+		}
+		return OperationTree.EMPTY;
+	}
+
+	private boolean isOperator(String token) {
+		return Operator.isOne(token);
 	}
 
 	private Operator lastOperator(String operationChain) {
