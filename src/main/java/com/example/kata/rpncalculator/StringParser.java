@@ -5,7 +5,10 @@ package com.example.kata.rpncalculator;
  */
 public class StringParser {
 	public OperationTree parse(String operationChain) {
-		return new OperationTree(Expression.SUM, Expression.constant(parseNumber(operationChain.charAt(0))), Expression.constant(parseNumber(operationChain.charAt(2))));
+		return new OperationTree(
+				Expression.SUM,
+				Expression.constant(parseNumber(operationChain.charAt(0))),
+				Expression.constant(parseNumber(operationChain.charAt(2))));
 	}
 
 	private int parseNumber(char character) {
