@@ -29,4 +29,9 @@ public class StringParserShould {
 	public void parse_two_numbers_and_the_multiplication() {
 		assertThat(sut.parse("1 3 *"), equalTo(TREE_1_3.withOperator(TIMES).build()));
 	}
+
+	@Test
+	public void parse_two_numbers_and_the_sum() {
+		assertThat(sut.parse("1 3 +"), equalTo(TREE_1_3.withOperator(SUM).build()));
+	}
 }
