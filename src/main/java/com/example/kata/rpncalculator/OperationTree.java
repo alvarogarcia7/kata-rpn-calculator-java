@@ -39,7 +39,10 @@ public class OperationTree {
 	public Integer compute() {
 		if(operator == Expression.TIMES){
 			return expression1.compute() * expression2.compute();
+		} else if (operator == Expression.MINUS){
+			return expression1.compute() - expression2.compute();
 		}
+
 		return expression1.compute() + expression2.compute();
 	}
 }
