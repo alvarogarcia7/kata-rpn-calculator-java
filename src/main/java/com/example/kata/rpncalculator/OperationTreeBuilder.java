@@ -7,6 +7,7 @@ public class OperationTreeBuilder {
 	private Expression operator;
 	private Expression operand1;
 	private Expression operand2;
+	private OperationTree firstTree;
 
 	public static OperationTreeBuilder aNew() {
 		return new OperationTreeBuilder();
@@ -24,14 +25,19 @@ public class OperationTreeBuilder {
 	}
 
 	public OperationTree build() {
-		return new OperationTree(operator, operand1, operand2);
+		if(null == firstTree) {
+			return new OperationTree(operator, operand1, operand2);
+		}
+		return new OperationTree(operator, operand1, firstTree);
 	}
 
 	public OperationTreeBuilder withExpression(int constant) {
+		this.operand1 = Expression.constant(constant);
 		return this;
 	}
 
-	public OperationTreeBuilder and(OperationTree operationTreeBuilder) {
+	public OperationTreeBuilder and(OperationTree operationTree) {
+		this.firstTree = operationTree;
 		return this;
 	}
 }

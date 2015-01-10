@@ -62,4 +62,12 @@ public class Expression {
 	public Integer compute() {
 		return this.number;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+				number +
+				(operator.equals("NONE")?"" : ", '" + operator + '\'') +
+				'}';
+	}
 }
