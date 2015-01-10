@@ -26,4 +26,12 @@ public class OperationTreeBuilder {
 	public OperationTree build() {
 		return new OperationTree(operator, operand1, operand2);
 	}
+
+	public OperationTreeBuilder withExpression(int constant) {
+		return this;
+	}
+
+	public OperationTreeBuilder and(OperationTree operationTreeBuilder) {
+		return this;
+	}
 }
