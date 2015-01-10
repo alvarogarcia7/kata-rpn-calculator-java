@@ -5,7 +5,7 @@ package com.example.kata.rpncalculator;
  */
 public class StringParser {
 	public OperationTree parse(String operationChain) {
-		if(operationChain.length() == 5) {
+		if(operationChain.length() < 8) {
 			return parseSubString(operationChain, 0);
 		} else {
 			return new OperationTree(
@@ -15,14 +15,21 @@ public class StringParser {
 		}
 	}
 
-	private OperationTree parseSubString(String operationChain, int begin) {
-		return new OperationTree(
-				Expression.operatorFrom(operationChain.charAt(begin + 4)),
-				Expression.constant(parseNumber(operationChain.charAt(begin + 0))),
-				Expression.constant(parseNumber(operationChain.charAt(begin + 2))));
+	private int parseNumber(char character) {
+		return parseNumber(String.valueOf(character));
 	}
 
-	private int parseNumber(char character) {
-		return character - '0';
+	private OperationTree parseSubString(String operationChain, int begin) {
+		String[] parts = operationChain.substring(begin).split(" +");
+
+		return new OperationTree(
+				Expression.operatorFrom(parts[2].charAt(0)),
+				Expression.constant(parseNumber(parts[0])),
+				Expression.constant(parseNumber(parts[1])));
+	}
+
+
+	private int parseNumber(String string) {
+		return Integer.parseInt(string);
 	}
 }
