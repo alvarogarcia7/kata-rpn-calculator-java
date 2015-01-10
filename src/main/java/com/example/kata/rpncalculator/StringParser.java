@@ -4,10 +4,13 @@ package com.example.kata.rpncalculator;
  * Created by alvaro on 10/01/15.
  */
 public class StringParser {
+
+	public static final int TWO_EXPRESSIONS_LENGTH = 9;
+
 	public OperationTree parse(String operationChain) {
-		if(operationChain.length() < 8) {
+		if(operationChain.length() < TWO_EXPRESSIONS_LENGTH) {
 			return parseSubString(operationChain, 0);
-		} else if(operationChain.length() == 9){
+		} else if(operationChain.length() == TWO_EXPRESSIONS_LENGTH){
 			return new OperationTree(
 					Operator.from(operationChain.charAt(8)),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
