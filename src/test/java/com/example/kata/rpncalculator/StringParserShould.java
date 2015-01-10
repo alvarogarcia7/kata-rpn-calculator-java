@@ -24,4 +24,9 @@ public class StringParserShould {
 	public void parse_two_numbers_and_the_division() {
 		assertThat(sut.parse("1 3 /"), equalTo(TREE_1_3.withOperator(DIVISION).build()));
 	}
+
+	@Test
+	public void parse_two_numbers_and_the_multiplication() {
+		assertThat(sut.parse("1 3 *"), equalTo(TREE_1_3.withOperator(TIMES).build()));
+	}
 }
