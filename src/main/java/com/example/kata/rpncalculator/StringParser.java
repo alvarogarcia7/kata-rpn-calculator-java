@@ -8,19 +8,31 @@ public class StringParser {
 	public static final int TWO_EXPRESSIONS_LENGTH = 9;
 
 	public OperationTree parse(String operationChain) {
+		OperationTree parsedInStack = parseInAStack(operationChain);
+		OperationTree operationTree;
 		if(operationChain.length() < TWO_EXPRESSIONS_LENGTH) {
-			return parseSubString(operationChain, 0);
+			operationTree = parseSubString(operationChain, 0);
 		} else if(operationChain.length() == TWO_EXPRESSIONS_LENGTH){
-			return new OperationTree(
+			operationTree=new OperationTree(
 					lastOperator(operationChain),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
 					parseSubString(operationChain, 0));
 		} else {
 			OperationTree tree1 = parseSubString(operationChain, 0);
 			OperationTree tree2 = parseSubString(operationChain, 6);
-			return new OperationTree(lastOperator(operationChain), tree1, tree2);
+			operationTree = new OperationTree(lastOperator(operationChain), tree1, tree2);
 		}
 
+		if(operationTree.equals(parsedInStack)){
+			return parsedInStack;
+		}
+
+		return operationTree;
+
+	}
+
+	private OperationTree parseInAStack(String operationChain) {
+		return null;
 	}
 
 	private Operator lastOperator(String operationChain) {
