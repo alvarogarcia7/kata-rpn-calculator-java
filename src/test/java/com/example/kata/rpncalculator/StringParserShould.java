@@ -3,7 +3,7 @@ package com.example.kata.rpncalculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.example.kata.rpncalculator.Expression.*;
+import static com.example.kata.rpncalculator.Expression.Operator.*;
 import static com.example.kata.rpncalculator.OperationTreeBuilder.aNew;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;

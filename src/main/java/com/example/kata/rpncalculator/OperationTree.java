@@ -58,11 +58,11 @@ public class OperationTree {
 		}
 
 
-		if (operator == Expression.TIMES) {
+		if (operator == Expression.Operator.TIMES) {
 			return expression1.compute() * tree2Result;
-		} else if (operator == Expression.MINUS) {
+		} else if (operator == Expression.Operator.MINUS) {
 			return expression1.compute() - tree2Result;
-		} else if (operator == Expression.DIVISION) {
+		} else if (operator == Expression.Operator.DIVISION) {
 			return expression1.compute() / tree2Result;
 		}
 
