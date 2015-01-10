@@ -5,6 +5,6 @@ package com.example.kata.rpncalculator;
  */
 public class OperationTreeApplier {
 	public Integer applyOn(OperationTree operationTree) {
-		return null;
+		return 0;
 	}
 }
