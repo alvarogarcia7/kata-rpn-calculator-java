@@ -18,7 +18,10 @@ public class StringParserShould {
 		sut = new StringParser();
 	}
 
-
+	@Test
+	public void parse_two_long_numbers_and_the_sum() {
+		assertThat(sut.parse("11 3 +"), equalTo(aNew().withOperands(11,3).withOperator(SUM).build()));
+	}
 
 	@Test
 	public void parse_two_numbers_and_the_division() {
@@ -50,7 +53,7 @@ public class StringParserShould {
 						and(
 								aNew().
 										withOperator(MINUS).
-										withOperands(1,3).
+										withOperands(1, 3).
 										build())
 						.build()));
 	}
