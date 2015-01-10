@@ -18,8 +18,8 @@ public class StringParserShould {
 	@Test
 	public void parse_two_numbers_and_an_operator() {
 
-		final OperationTree operationTree = sut.parse("1 0 +");
-		final OperationTree expected = new OperationTree(Expression.SUM, Expression.constant(1), Expression.constant(0));
+		final OperationTree operationTree = sut.parse("1 3 +");
+		final OperationTree expected = new OperationTree(Expression.SUM, Expression.constant(1), Expression.constant(3));
 		assertThat(operationTree, equalTo(expected));
 	}
 
