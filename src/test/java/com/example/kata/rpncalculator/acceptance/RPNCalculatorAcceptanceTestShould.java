@@ -1,6 +1,7 @@
 package com.example.kata.rpncalculator.acceptance;
 
 import com.example.kata.rpncalculator.RPNCalculator;
+import com.example.kata.rpncalculator.StringParser;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ import static org.hamcrest.Matchers.is;
 public class RPNCalculatorAcceptanceTestShould {
 
 	private RPNCalculator getRPNCalculator() {
-		return new RPNCalculator();
+		return new RPNCalculator(new StringParser());
 	}
 
 	@Test
