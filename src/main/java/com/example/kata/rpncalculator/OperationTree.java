@@ -37,6 +37,6 @@ public class OperationTree {
 	}
 
 	public Integer compute() {
-		return expression1.compute();
+		return expression1.compute() + expression2.compute();
 	}
 }
