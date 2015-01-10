@@ -6,10 +6,7 @@ package com.example.kata.rpncalculator;
 public class StringParser {
 	public OperationTree parse(String operationChain) {
 		if(operationChain.length() == 5) {
-			return new OperationTree(
-					Expression.operatorFrom(operationChain.charAt(4)),
-					Expression.constant(parseNumber(operationChain.charAt(0))),
-					Expression.constant(parseNumber(operationChain.charAt(2))));
+			return parseSubString(operationChain, 0, 4);
 		} else {
 			return new OperationTree(
 					Expression.operatorFrom(operationChain.charAt(8)),
