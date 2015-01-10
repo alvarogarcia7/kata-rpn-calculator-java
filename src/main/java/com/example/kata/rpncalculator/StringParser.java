@@ -30,16 +30,12 @@ public class StringParser {
 	}
 
 	private OperationTree parseInAStack(String operationChain) {
-		String[] parts = operationChain.split(" +");
-		Stack<String> stack = new Stack<>();
-		for (String current : parts) {
-			stack.push(current);
-		}
-		while (!stack.isEmpty()){
-			String current = stack.pop();
+		Stack<String> tokenStack = getTokens(operationChain);
+		while (!tokenStack.isEmpty()){
+			String current = tokenStack.pop();
 			if(isOperator(current)){
-				String operand1 = stack.pop();
-				String operand2 = stack.pop();
+				String operand1 = tokenStack.pop();
+				String operand2 = tokenStack.pop();
 				try {
 					return new OperationTree(Operator.from(current.charAt(0)),
 							Expression.constant(parseNumber(operand2)),
@@ -50,6 +46,15 @@ public class StringParser {
 			}
 		}
 		return OperationTree.EMPTY;
+	}
+
+	private Stack<String> getTokens(String operationChain) {
+		String[] parts = operationChain.split(" +");
+		Stack<String> tokenStack = new Stack<>();
+		for (String current : parts) {
+			tokenStack.push(current);
+		}
+		return tokenStack;
 	}
 
 	private boolean isOperator(String token) {
