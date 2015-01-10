@@ -1,6 +1,5 @@
 package com.example.kata.rpncalculator;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -32,28 +31,56 @@ public class StringParser {
 	}
 
 	private OperationTree parseInAStack(String operationChain) {
-		Stack<String> tokenStack = getTokens(operationChain);
-		List<OperationTree> operationTrees = new LinkedList<>();
-		while (!tokenStack.isEmpty()){
-			parseSubString(tokenStack, operationTrees);
-		}
-		return operationTrees.get(0);
-	}
 
-	private void parseSubString(Stack<String> tokenStack, List<OperationTree> operationTrees) {
-		String current = tokenStack.pop();
-		if(isOperator(current)){
-			String operand1 = tokenStack.pop();
-			String operand2 = tokenStack.pop();
-			try {
-				operationTrees.add(
-						new OperationTree(Operator.from(current.charAt(0)),
-							Expression.constant(parseNumber(operand2)),
-							Expression.constant(parseNumber(operand1))));
-			}catch (NumberFormatException e){
-				operationTrees.add(OperationTree.EMPTY);
+		Stack<String> tokenStack = getTokens(operationChain);
+
+		String[] parts = operationChain.split(" +");
+		for (String current : parts) {
+			if (!isOperator(current)) {
+				tokenStack.push(current);
+			} else {
+				final String argument2 = tokenStack.pop();
+				return new OperationTree(operator(current),
+						expression(tokenStack.pop()),
+						expression(argument2)
+				);
 			}
 		}
+
+		return OperationTree.EMPTY;
+
+
+	}
+
+	private Expression expression(String current) {
+		return getConstantFrom(current);
+	}
+
+	private Operator operator(String current) {
+		return Operator.from(getOperatorFrom(current));
+	}
+
+	private void read(Stack<String> tokenStack, List<OperationTree> operationTrees, List<Expression> expressionList) {
+		if(tokenStack.isEmpty()){
+			return;
+
+		}
+		if(isOperator(tokenStack.peek())){
+			Operator operator = Operator.from(getOperatorFrom(tokenStack.pop()));
+			read(tokenStack, operationTrees, expressionList);
+		} else {
+			Expression operand = getConstantFrom(tokenStack.pop());
+			expressionList.add(operand);
+			read(tokenStack, operationTrees, expressionList);
+		}
+
+	}
+
+
+	private OperationTree popFromList(List<OperationTree> operationTrees) {
+		OperationTree tree1 = operationTrees.get(operationTrees.size() - 1);
+		operationTrees.remove(operationTrees.size() - 1);
+		return tree1;
 	}
 
 	private Stack<String> getTokens(String operationChain) {
