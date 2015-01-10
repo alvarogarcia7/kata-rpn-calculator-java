@@ -43,5 +43,21 @@ public class OperationTreeApplierShould {
 	}
 
 
+	@Test
+	public void apply_to_two_expressions() {
+
+		OperationTree TREE_WITH_TWO_EXPRESSIONS = aNew().
+				withOperator(SUM).
+				withExpression(2).
+				and(
+						aNew().
+								withOperator(MINUS).
+								withOperands(1,3).
+								build())
+				.build();
+		assertThat(sut.applyOn(TREE_WITH_TWO_EXPRESSIONS), is(0));
+	}
+
+
 
 }
