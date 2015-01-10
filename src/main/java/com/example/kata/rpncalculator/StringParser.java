@@ -1,5 +1,7 @@
 package com.example.kata.rpncalculator;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -31,21 +33,27 @@ public class StringParser {
 
 	private OperationTree parseInAStack(String operationChain) {
 		Stack<String> tokenStack = getTokens(operationChain);
+		List<OperationTree> operationTrees = new LinkedList<>();
 		while (!tokenStack.isEmpty()){
-			String current = tokenStack.pop();
-			if(isOperator(current)){
-				String operand1 = tokenStack.pop();
-				String operand2 = tokenStack.pop();
-				try {
-					return new OperationTree(Operator.from(current.charAt(0)),
+			parseSubString(tokenStack, operationTrees);
+		}
+		return operationTrees.get(0);
+	}
+
+	private void parseSubString(Stack<String> tokenStack, List<OperationTree> operationTrees) {
+		String current = tokenStack.pop();
+		if(isOperator(current)){
+			String operand1 = tokenStack.pop();
+			String operand2 = tokenStack.pop();
+			try {
+				operationTrees.add(
+						new OperationTree(Operator.from(current.charAt(0)),
 							Expression.constant(parseNumber(operand2)),
-							Expression.constant(parseNumber(operand1)));
-				}catch (NumberFormatException e){
-					return OperationTree.EMPTY;
-				}
+							Expression.constant(parseNumber(operand1))));
+			}catch (NumberFormatException e){
+				operationTrees.add(OperationTree.EMPTY);
 			}
 		}
-		return OperationTree.EMPTY;
 	}
 
 	private Stack<String> getTokens(String operationChain) {
