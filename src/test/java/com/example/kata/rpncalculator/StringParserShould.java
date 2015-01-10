@@ -10,6 +10,7 @@ import static com.example.kata.rpncalculator.Expression.*;
 
 public class StringParserShould {
 
+	private static final OperationTreeBuilder TREE_1_3 = aNew().withOperands(1, 3);
 	private StringParser sut;
 
 	@Before
@@ -17,8 +18,10 @@ public class StringParserShould {
 		sut = new StringParser();
 	}
 
+
+
 	@Test
-	public void parse_two_numbers_and_an_operator() {
-		assertThat(sut.parse("1 3 /"), equalTo(aNew().withOperator(DIVISION).withOperands(1, 3).build()));
+	public void parse_two_numbers_and_the_division() {
+		assertThat(sut.parse("1 3 /"), equalTo(TREE_1_3.withOperator(DIVISION).build()));
 	}
 }
