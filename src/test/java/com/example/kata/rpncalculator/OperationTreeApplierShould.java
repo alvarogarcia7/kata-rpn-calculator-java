@@ -28,6 +28,11 @@ public class OperationTreeApplierShould {
 		assertThat(sut.applyOn(aNew().withOperator(SUM).withOperands(1, 0).build()), is(1));
 	}
 
+	@Test
+	public void sum_another_two_numbers() {
+		assertThat(sut.applyOn(aNew().withOperator(SUM).withOperands(0, 1).build()), is(1));
+	}
+
 
 
 }
