@@ -6,16 +6,16 @@ package com.example.kata.rpncalculator;
 public class StringParser {
 	public OperationTree parse(String operationChain) {
 		if(operationChain.length() == 5) {
-			return parseSubString(operationChain, 0, 4);
+			return parseSubString(operationChain, 0);
 		} else {
 			return new OperationTree(
 					Expression.operatorFrom(operationChain.charAt(8)),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
-					parseSubString(operationChain, 0, 4));
+					parseSubString(operationChain, 0));
 		}
 	}
 
-	private OperationTree parseSubString(String operationChain, int begin, int end) {
+	private OperationTree parseSubString(String operationChain, int begin) {
 		return new OperationTree(
 				Expression.operatorFrom(operationChain.charAt(begin + 4)),
 				Expression.constant(parseNumber(operationChain.charAt(begin + 0))),
