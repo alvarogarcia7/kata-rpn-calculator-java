@@ -17,10 +17,7 @@ public class StringParserShould {
 
 	@Test
 	public void parse_two_numbers_and_an_operator() {
-
-		final OperationTree operationTree = sut.parse("1 3 -");
-		final OperationTree expected = new OperationTree(Expression.MINUS, Expression.constant(1), Expression.constant(3));
-		assertThat(operationTree, equalTo(expected));
+		assertThat(sut.parse("1 3 -"), equalTo(new OperationTree(Expression.MINUS, Expression.constant(1), Expression.constant(3))));
 	}
 
 }
