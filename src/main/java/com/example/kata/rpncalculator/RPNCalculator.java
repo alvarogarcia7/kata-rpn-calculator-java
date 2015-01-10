@@ -5,13 +5,15 @@ package com.example.kata.rpncalculator;
  */
 public class RPNCalculator {
 	private final StringParser parser;
+	private final OperationTreeApplier applier;
 
-	public RPNCalculator(StringParser parserMock) {
+	public RPNCalculator(StringParser parserMock, OperationTreeApplier operationTreeApplier) {
 		this.parser = parserMock;
+		this.applier = operationTreeApplier;
 	}
 
 	public Integer calculate(String operationChain) {
-		parser.parse(operationChain);
+		applier.applyOn(parser.parse(operationChain));
 		if ("2 5 +".equals(operationChain)) {
 			return 7;
 		} else {

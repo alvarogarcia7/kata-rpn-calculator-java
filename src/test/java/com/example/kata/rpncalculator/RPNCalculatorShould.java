@@ -20,7 +20,7 @@ public class RPNCalculatorShould {
 	public void setUp() {
 		parserMock = mock(StringParser.class);
 		applierMock = mock(OperationTreeApplier.class);
-		sut = new RPNCalculator(parserMock);
+		sut = new RPNCalculator(parserMock, applierMock);
 	}
 
 	@Test
