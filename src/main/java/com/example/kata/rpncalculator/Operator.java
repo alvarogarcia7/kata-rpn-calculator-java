@@ -17,15 +17,12 @@ public enum  Operator {
 	}
 
 	public static com.example.kata.rpncalculator.Operator from(char operator) {
-		if (operator == SUM.representation) {
-			return com.example.kata.rpncalculator.Operator.SUM;
-		} else if (operator == MINUS.representation) {
-			return com.example.kata.rpncalculator.Operator.MINUS;
-		} else if (operator == DIVISION.representation) {
-			return com.example.kata.rpncalculator.Operator.DIVISION;
-		} else {
-			return com.example.kata.rpncalculator.Operator.TIMES;
+		for (Operator current : values()) {
+			if(operator == current.representation){
+				return current;
+			}
 		}
+		return TIMES;
 	}
 
 }
