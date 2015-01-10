@@ -7,17 +7,17 @@ public class OperationTree {
 	private static final OperationTree EMPTY = null;
 	private final Expression expression2;
 	private final Expression expression1;
-	private final Expression operator;
+	private final Operator operator;
 	private final OperationTree tree2;
 
-	public OperationTree(Expression operator, Expression expression1, Expression expression2) {
+	public OperationTree(Operator operator, Expression expression1, Expression expression2) {
 		this.operator = operator;
 		this.expression1 = expression1;
 		this.expression2 = expression2;
 		this.tree2 = OperationTree.EMPTY;
 	}
 
-	public OperationTree(Expression operator, Expression operand1, OperationTree firstTree) {
+	public OperationTree(Operator operator, Expression operand1, OperationTree firstTree) {
 		this.operator = operator;
 		this.expression1 = operand1;
 		this.expression2 = null;
@@ -58,11 +58,11 @@ public class OperationTree {
 		}
 
 
-		if (operator == Expression.Operator.TIMES) {
+		if (operator == Operator.TIMES) {
 			return expression1.compute() * tree2Result;
-		} else if (operator == Expression.Operator.MINUS) {
+		} else if (operator == Operator.MINUS) {
 			return expression1.compute() - tree2Result;
-		} else if (operator == Expression.Operator.DIVISION) {
+		} else if (operator == Operator.DIVISION) {
 			return expression1.compute() / tree2Result;
 		}
 

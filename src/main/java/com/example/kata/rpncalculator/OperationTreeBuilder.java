@@ -4,7 +4,7 @@ package com.example.kata.rpncalculator;
  * Created by alvaro on 10/01/15.
  */
 public class OperationTreeBuilder {
-	private Expression operator;
+	private Operator operator;
 	private Expression operand1;
 	private Expression operand2;
 	private OperationTree firstTree;
@@ -13,7 +13,7 @@ public class OperationTreeBuilder {
 		return new OperationTreeBuilder();
 	}
 
-	public OperationTreeBuilder withOperator(Expression operator) {
+	public OperationTreeBuilder withOperator(Operator operator) {
 		this.operator = operator;
 		return this;
 	}

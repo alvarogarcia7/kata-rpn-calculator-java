@@ -9,7 +9,7 @@ public class StringParser {
 			return parseSubString(operationChain);
 		} else {
 			return new OperationTree(
-					Expression.Operator.from(operationChain.charAt(8)),
+					Operator.from(operationChain.charAt(8)),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
 					parseSubString(operationChain));
 		}
@@ -23,7 +23,7 @@ public class StringParser {
 		String[] parts = operationChain.split(" +");
 
 		return new OperationTree(
-				Expression.Operator.from(getOperatorFrom(parts[2])),
+				Operator.from(getOperatorFrom(parts[2])),
 				getConstantFrom(parts[0]),
 				getConstantFrom(parts[1]));
 	}

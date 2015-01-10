@@ -4,31 +4,6 @@ package com.example.kata.rpncalculator;
  * Created by alvaro on 10/01/15.
  */
 public class Expression {
-	public static class Operator extends Expression {
-		private final String stringRepresentation;
-		public static final Operator SUM = new Operator("SUM");
-		public static final Operator MINUS = new Operator("MINUS");
-		public static final Operator TIMES = new Operator("TIMES");
-		public static final Operator DIVISION = new Operator("DIVISION");
-
-		public Operator(String stringRepresentation) {
-			super(0);
-			this.stringRepresentation = stringRepresentation;
-		}
-
-		public static Operator from(char operator) {
-			if (operator == '+') {
-				return Operator.SUM;
-			} else if (operator == '-') {
-				return Operator.MINUS;
-			} else if (operator == '/') {
-				return Operator.DIVISION;
-			} else {
-				return Operator.TIMES;
-			}
-		}
-
-	}
 
 	private final int number;
 	private final String operator;
