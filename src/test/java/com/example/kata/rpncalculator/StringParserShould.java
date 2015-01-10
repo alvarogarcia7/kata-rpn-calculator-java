@@ -19,6 +19,6 @@ public class StringParserShould {
 
 	@Test
 	public void parse_two_numbers_and_an_operator() {
-		assertThat(sut.parse("1 3 *"), equalTo(aNew().withOperator(TIMES).withOperands(1, 3).build()));
+		assertThat(sut.parse("1 3 /"), equalTo(aNew().withOperator(DIVISION).withOperands(1, 3).build()));
 	}
 }
