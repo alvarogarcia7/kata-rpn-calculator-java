@@ -5,6 +5,7 @@ package com.example.kata.rpncalculator;
  */
 public class Expression {
 	public static final Expression SUM = new Expression("SUM");
+	public static final Expression MINUS = new Expression("MINUS");
 	private final int number;
 	private final String operator;
 
@@ -44,4 +45,11 @@ public class Expression {
 	}
 
 
+	public static Expression operatorFrom(char operator) {
+		if(operator == '+'){
+			return Expression.SUM;
+		} else{
+			return Expression.MINUS;
+		}
+	}
 }
