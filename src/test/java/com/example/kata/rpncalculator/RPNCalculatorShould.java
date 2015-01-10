@@ -12,6 +12,7 @@ import static org.mockito.Mockito.verify;
 
 public class RPNCalculatorShould {
 
+	public static final String UNUSED_OPERATION_CHAIN = "";
 	private RPNCalculator sut;
 	private StringParser parserMock;
 	private OperationTreeApplier applierMock;
@@ -30,16 +31,18 @@ public class RPNCalculatorShould {
 
 	@Test
 	public void call_the_string_parser() {
-		sut.calculate("");
+		sut.calculate(UNUSED_OPERATION_CHAIN);
 
-		verify(parserMock).parse("");
+		verify(parserMock).parse(UNUSED_OPERATION_CHAIN);
 	}
 
 	@Test
 	public void call_the_operation_applier() {
 		final OperationTree operationTree = new OperationTree();
 		doReturn(operationTree).when(parserMock).parse(anyString());
-		sut.calculate("");
+
+		sut.calculate(UNUSED_OPERATION_CHAIN);
+
 		verify(applierMock).applyOn(operationTree);
 	}
 
