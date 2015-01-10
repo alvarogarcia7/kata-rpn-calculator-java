@@ -7,8 +7,8 @@ public class RPNCalculator {
 	private final StringParser parser;
 	private final OperationTreeApplier applier;
 
-	public RPNCalculator(StringParser parserMock, OperationTreeApplier operationTreeApplier) {
-		this.parser = parserMock;
+	public RPNCalculator(StringParser StringParser, OperationTreeApplier operationTreeApplier) {
+		this.parser = StringParser;
 		this.applier = operationTreeApplier;
 	}
 
