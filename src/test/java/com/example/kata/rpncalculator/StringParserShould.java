@@ -3,8 +3,8 @@ package com.example.kata.rpncalculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.example.kata.rpncalculator.Operator.*;
 import static com.example.kata.rpncalculator.OperationTreeBuilder.aNew;
+import static com.example.kata.rpncalculator.Operator.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -56,5 +56,18 @@ public class StringParserShould {
 										withOperands(1, 3).
 										build())
 						.build()));
+	}
+
+	@Test
+	public void parse_three_operators_and_two_expressions() {
+
+		assertThat(sut.parse("1 2 + 3 4 * -"), equalTo(
+				aNew().
+						withOperator(MINUS).
+						withOperands(
+								aNew().withOperator(SUM).withOperands(1,2).build(),
+								aNew().withOperator(TIMES).withOperands(3,4).build()
+						).build()
+		));
 	}
 }
