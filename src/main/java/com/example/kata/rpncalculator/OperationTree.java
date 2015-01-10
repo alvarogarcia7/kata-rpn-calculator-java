@@ -49,19 +49,25 @@ public class OperationTree {
 	}
 
 	public Integer compute() {
-		if(tree2 == null) {
-			if (operator == Expression.TIMES) {
-				return expression1.compute() * expression2.compute();
-			} else if (operator == Expression.MINUS) {
-				return expression1.compute() - expression2.compute();
-			} else if (operator == Expression.DIVISION) {
-				return expression1.compute() / expression2.compute();
-			}
 
-			return expression1.compute() + expression2.compute();
+		Integer tree2Result;
+		if(tree2 == null) {
+			tree2Result = expression2.compute();
 		} else {
-			return expression1.compute() + tree2.compute();
+			tree2Result = tree2.compute();
 		}
+
+
+		if (operator == Expression.TIMES) {
+			return expression1.compute() * tree2Result;
+		} else if (operator == Expression.MINUS) {
+			return expression1.compute() - tree2Result;
+		} else if (operator == Expression.DIVISION) {
+			return expression1.compute() / tree2Result;
+		}
+
+		return expression1.compute() + tree2Result;
+
 	}
 
 	@Override
