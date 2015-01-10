@@ -7,9 +7,9 @@ public class RPNCalculator {
 	private final StringParser parser;
 	private final OperationTreeApplier applier;
 
-	public RPNCalculator(StringParser StringParser, OperationTreeApplier operationTreeApplier) {
-		this.parser = StringParser;
-		this.applier = operationTreeApplier;
+	public RPNCalculator(StringParser stringParser, OperationTreeApplier operationTreeApplier) {
+		parser = stringParser;
+		applier = operationTreeApplier;
 	}
 
 	public Integer calculate(String operationChain) {
