@@ -32,6 +32,13 @@ public class Expression {
 	}
 
 	@Override
+	public String toString() {
+		return "{" +
+				number +
+				'}';
+	}
+
+	@Override
 	public int hashCode() {
 		return number;
 	}
