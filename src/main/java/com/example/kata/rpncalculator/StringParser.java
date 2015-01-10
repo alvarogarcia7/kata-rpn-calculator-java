@@ -23,9 +23,17 @@ public class StringParser {
 		String[] parts = operationChain.split(" +");
 
 		return new OperationTree(
-				Expression.operatorFrom(parts[2].charAt(0)),
-				Expression.constant(parseNumber(parts[0])),
-				Expression.constant(parseNumber(parts[1])));
+				Expression.operatorFrom(getOperatorFrom(parts[2])),
+				getConstantFrom(parts[0]),
+				getConstantFrom(parts[1]));
+	}
+
+	private Expression getConstantFrom(String part) {
+		return Expression.constant(parseNumber(part));
+	}
+
+	private char getOperatorFrom(String part) {
+		return part.charAt(0);
 	}
 
 
