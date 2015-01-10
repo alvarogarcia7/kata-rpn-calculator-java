@@ -35,4 +35,8 @@ public class OperationTree {
 		result = 31 * result + operator.hashCode();
 		return result;
 	}
+
+	public Integer compute() {
+		return expression1.compute();
+	}
 }

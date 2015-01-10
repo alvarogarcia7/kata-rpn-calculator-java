@@ -58,4 +58,8 @@ public class Expression {
 			return Expression.TIMES;
 		}
 	}
+
+	public Integer compute() {
+		return this.number;
+	}
 }

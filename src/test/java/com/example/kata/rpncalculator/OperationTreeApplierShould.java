@@ -3,6 +3,7 @@ package com.example.kata.rpncalculator;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.example.kata.rpncalculator.Expression.SUM;
 import static com.example.kata.rpncalculator.Expression.TIMES;
 import static com.example.kata.rpncalculator.OperationTreeBuilder.aNew;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,6 +21,11 @@ public class OperationTreeApplierShould {
 	@Test
 	public void multiply_two_numbers() {
 		assertThat(sut.applyOn(aNew().withOperator(TIMES).withOperands(0, 0).build()), is(0));
+	}
+
+	@Test
+	public void sum_two_numbers() {
+		assertThat(sut.applyOn(aNew().withOperator(SUM).withOperands(1, 0).build()), is(1));
 	}
 
 
