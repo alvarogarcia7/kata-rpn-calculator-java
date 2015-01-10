@@ -41,6 +41,8 @@ public class OperationTree {
 			return expression1.compute() * expression2.compute();
 		} else if (operator == Expression.MINUS){
 			return expression1.compute() - expression2.compute();
+		} else if (operator == Expression.DIVISION){
+			return expression1.compute()  / expression2.compute();
 		}
 
 		return expression1.compute() + expression2.compute();
