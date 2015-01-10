@@ -6,7 +6,7 @@ package com.example.kata.rpncalculator;
 public class Expression {
 	public static final Expression SUM = new Expression("SUM");
 	public static final Expression MINUS = new Expression("MINUS");
-	public static final Expression TIMES = null;
+	public static final Expression TIMES = new Expression("TIMES");
 	private final int number;
 	private final String operator;
 
@@ -49,8 +49,10 @@ public class Expression {
 	public static Expression operatorFrom(char operator) {
 		if(operator == '+'){
 			return Expression.SUM;
-		} else{
+		} else if (operator == '-') {
 			return Expression.MINUS;
+		} else {
+			return Expression.TIMES;
 		}
 	}
 }
