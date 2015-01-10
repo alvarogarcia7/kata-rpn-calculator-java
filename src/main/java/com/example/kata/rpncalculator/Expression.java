@@ -7,7 +7,7 @@ public class Expression {
 	public static final Expression SUM = new Expression("SUM");
 	public static final Expression MINUS = new Expression("MINUS");
 	public static final Expression TIMES = new Expression("TIMES");
-	public static final Expression DIVISION = null;
+	public static final Expression DIVISION = new Expression("DIVISION");
 	private final int number;
 	private final String operator;
 
@@ -52,6 +52,8 @@ public class Expression {
 			return Expression.SUM;
 		} else if (operator == '-') {
 			return Expression.MINUS;
+		} else if (operator == '/') {
+			return Expression.DIVISION;
 		} else {
 			return Expression.TIMES;
 		}
