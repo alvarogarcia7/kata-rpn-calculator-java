@@ -20,7 +20,7 @@ public class OperationTreeApplierShould {
 
 	@Test
 	public void multiply_two_numbers() {
-		assertThat(sut.applyOn(aNew().withOperator(TIMES).withOperands(0, 0).build()), is(0));
+		assertThat(sut.applyOn(aNew().withOperator(TIMES).withOperands(1, 2).build()), is(2));
 	}
 
 	@Test
