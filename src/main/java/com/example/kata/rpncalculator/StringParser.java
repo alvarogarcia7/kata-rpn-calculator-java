@@ -28,24 +28,24 @@ public class StringParser {
 		return operationStack.pop();
 	}
 
-	private Computable constant(String current) {
-		return Constant.from(parseNumber(current));
+	private Computable constant(String token) {
+		return Constant.from(parseNumber(token));
 	}
 
-	private Operator operator(String current) {
-		return Operator.from(getOperatorFrom(current));
+	private Operator operator(String token) {
+		return Operator.from(getOperatorFrom(token));
 	}
 
 	private boolean isOperator(String token) {
 		return Operator.isOne(token);
 	}
 
-	private char getOperatorFrom(String part) {
-		return part.charAt(0);
+	private char getOperatorFrom(String token) {
+		return token.charAt(0);
 	}
 
 
-	private int parseNumber(String string) {
-		return Integer.parseInt(string);
+	private int parseNumber(String token) {
+		return Integer.parseInt(token);
 	}
 }
