@@ -49,12 +49,12 @@ public class StringParserShould {
 		assertThat(sut.parse("1 3 - 2 +"), equalTo(
 				aNew().
 						withOperator(SUM).
-						withExpression(2).
-						and(
+						withOperands(
 								aNew().
 										withOperator(MINUS).
 										withOperands(1, 3).
-										build())
+										build(),
+								aNew().withExpression(2).build())
 						.build()));
 	}
 
@@ -65,7 +65,7 @@ public class StringParserShould {
 				aNew().
 						withOperator(SUM).
 						withOperands(
-								new OperationTree(Expression.constant(2)),
+								aNew().withExpression(2).build(),
 								aNew().
 										withOperator(MINUS).
 										withOperands(1, 3).
