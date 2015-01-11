@@ -7,7 +7,7 @@ public class Expression implements Computable{
 
 	private final int number;
 
-	public Expression(int number) {
+	private Expression(int number) {
 		this.number = number;
 	}
 
