@@ -5,8 +5,8 @@ package com.example.kata.rpncalculator;
  */
 public class OperationTreeBuilder {
 	private Operator operator;
-	private OperationTree tree1;
-	private OperationTree tree2;
+	private Computable tree1;
+	private Computable tree2;
 	private Integer constant;
 
 	public static OperationTreeBuilder aNew() {
@@ -19,16 +19,16 @@ public class OperationTreeBuilder {
 	}
 
 	public OperationTreeBuilder withOperands(int operand1, int operand2) {
-		this.tree1 = new OperationTree(Expression.constant(operand1));
-		this.tree2 = new OperationTree(Expression.constant(operand2));
+		this.tree1 = Expression.constant(operand1);
+		this.tree2 = Expression.constant(operand2);
 		return this;
 	}
 
-	public OperationTree build() {
+	public Computable build() {
 		if(null == constant) {
-			return new OperationTree(operator, tree1, tree2);
+			return new OperationTreeNode(operator, tree1, tree2);
 		} else {
-			return new OperationTree(new Expression(constant));
+			return Expression.constant(constant);
 		}
 
 	}

@@ -7,28 +7,28 @@ import java.util.Stack;
  */
 public class StringParser {
 
-	public OperationTree parse(String operationChain) {
+	public Computable parse(String operationChain) {
 		return parseInAStack(operationChain);
 	}
 
-	private OperationTree parseInAStack(String operationChain) {
+	private Computable parseInAStack(String operationChain) {
 
 		String[] parts = operationChain.split(" +");
-		Stack<OperationTree> operationStack = new Stack<>();
+		Stack<Computable> operationStack = new Stack<>();
 		for (String current : parts) {
 			if (isOperator(current)) {
-				OperationTree tmp = operationStack.pop();
-				operationStack.push(new OperationTree(operator(current),
+				Computable tmp = operationStack.pop();
+				operationStack.push(new OperationTreeNode(operator(current),
 						operationStack.pop(), tmp));
 			} else {
-				operationStack.push(new OperationTree(expression(current)));
+				operationStack.push(expression(current));
 			}
 		}
 
 		return operationStack.pop();
 	}
 
-	private Expression expression(String current) {
+	private Computable expression(String current) {
 		return getConstantFrom(current);
 	}
 
@@ -40,7 +40,7 @@ public class StringParser {
 		return Operator.isOne(token);
 	}
 
-	private Expression getConstantFrom(String part) {
+	private Computable getConstantFrom(String part) {
 		return Expression.constant(parseNumber(part));
 	}
 

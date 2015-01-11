@@ -38,12 +38,12 @@ public class RPNCalculatorShould {
 
 	@Test
 	public void call_the_operation_applier() {
-		final OperationTree operationTree = mock(OperationTree.class);
-		doReturn(operationTree).when(parserMock).parse(anyString());
+		final OperationTreeNode operationTreeNode = mock(OperationTreeNode.class);
+		doReturn(operationTreeNode).when(parserMock).parse(anyString());
 
 		sut.calculate(UNUSED_OPERATION_CHAIN);
 
-		verify(applierMock).applyOn(operationTree);
+		verify(applierMock).applyOn(operationTreeNode);
 	}
 
 }

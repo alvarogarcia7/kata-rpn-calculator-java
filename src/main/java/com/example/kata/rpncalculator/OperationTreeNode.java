@@ -5,30 +5,23 @@ import java.util.Optional;
 /**
  * Created by alvaro on 10/01/15.
  */
-public class OperationTree implements Computable{
-	static final OperationTree EMPTY = null;
+public class OperationTreeNode extends OperationTreeLeaf implements Computable{
+	static final OperationTreeNode EMPTY = null;
 	private final Optional<Operator> operator;
 	private final Computable tree2;
-	private final Computable tree1;
 
-	public OperationTree(Operator operator, OperationTree tree1, OperationTree tree2) {
-		this.tree1 = tree1;
+	public OperationTreeNode(Operator operator, Computable tree1, Computable tree2) {
+		super(tree1);
 		this.tree2 = tree2;
 		this.operator = Optional.of(operator);
-	}
-
-	public OperationTree(Expression constant) {
-		tree1 = constant;
-		tree2 = OperationTree.EMPTY;
-		operator = Optional.empty();
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (!(o instanceof OperationTree)) return false;
+		if (!(o instanceof OperationTreeNode)) return false;
 
-		OperationTree that = (OperationTree) o;
+		OperationTreeNode that = (OperationTreeNode) o;
 
 		if (operator != null ? !operator.equals(that.operator) : that.operator != null) return false;
 		if (tree1 != null ? !tree1.equals(that.tree1) : that.tree1 != null) return false;
@@ -71,17 +64,11 @@ public class OperationTree implements Computable{
 
 	@Override
 	public String toString() {
-		if(operator.isPresent()) {
 			return "{" +
 					operator.get() +
 					", t1=" + tree1 +
 					", t2=" + tree2 +
 					'}';
-		} else {
-			return "{" +
-					tree1 +
-					'}';
-		}
 	}
 
 }
