@@ -26,12 +26,12 @@ public class OperationTreeApplierShould {
 
 	@Test
 	public void sum_two_numbers() {
-		assertThat(sut.applyOn(aNew().withOperator(SUM).withOperands(1, 0).build()), is(1));
+		assertThat(sut.applyOn(aNew().withOperator(PLUS).withOperands(1, 0).build()), is(1));
 	}
 
 	@Test
 	public void sum_another_two_numbers() {
-		assertThat(sut.applyOn(aNew().withOperator(SUM).withOperands(0, 1).build()), is(1));
+		assertThat(sut.applyOn(aNew().withOperator(PLUS).withOperands(0, 1).build()), is(1));
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class OperationTreeApplierShould {
 
 	@Test
 	public void divide_two_numbers() {
-		assertThat(sut.applyOn(aNew().withOperator(DIVISION).withOperands(2, 2).build()), is(1));
+		assertThat(sut.applyOn(aNew().withOperator(OBELUS).withOperands(2, 2).build()), is(1));
 	}
 
 

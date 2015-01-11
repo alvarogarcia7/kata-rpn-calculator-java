@@ -21,12 +21,12 @@ public class StringParserShould {
 
 	@Test
 	public void parse_two_long_numbers_and_the_sum() {
-		assertThat(sut.parse("11 3 +"), equalTo(aNew().withOperands(11,3).withOperator(SUM).build()));
+		assertThat(sut.parse("11 3 +"), equalTo(aNew().withOperands(11,3).withOperator(PLUS).build()));
 	}
 
 	@Test
 	public void parse_two_numbers_and_the_division() {
-		assertThat(sut.parse("1 3 /"), equalTo(TREE_1_3.withOperator(DIVISION).build()));
+		assertThat(sut.parse("1 3 /"), equalTo(TREE_1_3.withOperator(OBELUS).build()));
 	}
 
 	@Test
@@ -36,7 +36,7 @@ public class StringParserShould {
 
 	@Test
 	public void parse_two_numbers_and_the_sum() {
-		assertThat(sut.parse("1 3 +"), equalTo(TREE_1_3.withOperator(SUM).build()));
+		assertThat(sut.parse("1 3 +"), equalTo(TREE_1_3.withOperator(PLUS).build()));
 	}
 
 	@Test

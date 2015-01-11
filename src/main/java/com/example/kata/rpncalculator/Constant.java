@@ -55,7 +55,7 @@ public class Constant implements Computable{
 			computedValue = number * otherNumber;
 		} else if (operator == Operator.MINUS) {
 			computedValue = number - otherNumber;
-		} else if (operator == Operator.DIVISION) {
+		} else if (operator == Operator.OBELUS) {
 			computedValue =  number / otherNumber;
 		} else {
 			computedValue = number + otherNumber;
