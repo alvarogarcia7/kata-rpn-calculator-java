@@ -3,8 +3,8 @@ package com.example.kata.rpncalculator;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.example.kata.rpncalculator.Operator.*;
 import static com.example.kata.rpncalculator.OperationTreeBuilder.aNew;
+import static com.example.kata.rpncalculator.Operator.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -71,6 +71,19 @@ public class OperationTreeApplierShould {
 								build())
 				.build();
 		assertThat(sut.applyOn(TREE_WITH_TWO_EXPRESSIONS), is(6));
+	}
+
+	@Test
+	public void apply_three_expressions() {
+
+		OperationTree TREE_WITH_THREE_EXPRESSIONS =
+				aNew().
+						withOperator(MINUS).
+						withOperands(
+								aNew().withOperator(SUM).withOperands(1,2).build(),
+								aNew().withOperator(TIMES).withOperands(3,4).build()
+						).build();
+		assertThat(sut.applyOn(TREE_WITH_THREE_EXPRESSIONS), is(-9));
 	}
 
 

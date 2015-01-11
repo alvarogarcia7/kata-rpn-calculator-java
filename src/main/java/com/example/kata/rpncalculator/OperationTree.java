@@ -73,7 +73,6 @@ public class OperationTree {
 			} else if (operator == Operator.DIVISION) {
 				return tree1Result / tree2Result;
 			}
-			System.out.println(this);
 			return tree1Result + tree2Result;
 		} else {
 			return tree1Result;
