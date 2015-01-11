@@ -1,5 +1,7 @@
 package com.example.kata.rpncalculator;
 
+import java.util.Optional;
+
 /**
  * Created by alvaro on 10/01/15.
  */
@@ -7,12 +9,12 @@ public class OperationTree {
 	static final OperationTree EMPTY = null;
 	private final Expression expression2;
 	private final Expression expression1;
-	private final Operator operator;
+	private final Optional<Operator> operator;
 	private final OperationTree tree2;
 	private final OperationTree tree1;
 
 	public OperationTree(Operator operator, Expression expression1, Expression expression2) {
-		this.operator = operator;
+		this.operator = Optional.of(operator);
 		this.expression1 = expression1;
 		this.expression2 = expression2;
 		this.tree2 = OperationTree.EMPTY;
@@ -20,7 +22,7 @@ public class OperationTree {
 	}
 
 	public OperationTree(Operator operator, Expression operand1, OperationTree firstTree) {
-		this.operator = operator;
+		this.operator = Optional.of(operator);
 		this.expression1 = operand1;
 		this.expression2 = null;
 		this.tree2 = firstTree;
@@ -30,7 +32,7 @@ public class OperationTree {
 	public OperationTree(Operator operator, OperationTree tree1, OperationTree tree2) {
 		this.tree1 = tree1;
 		this.tree2 = tree2;
-		this.operator = operator;
+		this.operator = Optional.of(operator);
 		expression1 = null;
 		expression2 = null;
 	}
@@ -44,7 +46,7 @@ public class OperationTree {
 
 		if (expression1 != null ? !expression1.equals(that.expression1) : that.expression1 != null) return false;
 		if (expression2 != null ? !expression2.equals(that.expression2) : that.expression2 != null) return false;
-		if (operator != that.operator) return false;
+		if (operator != null ? !operator.equals(that.operator) : that.operator != null) return false;
 		if (tree1 != null ? !tree1.equals(that.tree1) : that.tree1 != null) return false;
 		if (tree2 != null ? !tree2.equals(that.tree2) : that.tree2 != null) return false;
 
@@ -70,16 +72,20 @@ public class OperationTree {
 			tree2Result = tree2.compute();
 		}
 
+		if(operator.isPresent()) {
+			Operator operator = this.operator.get();
+			if (operator == Operator.TIMES) {
+				return expression1.compute() * tree2Result;
+			} else if (operator == Operator.MINUS) {
+				return expression1.compute() - tree2Result;
+			} else if (operator == Operator.DIVISION) {
+				return expression1.compute() / tree2Result;
+			}
 
-		if (operator == Operator.TIMES) {
-			return expression1.compute() * tree2Result;
-		} else if (operator == Operator.MINUS) {
-			return expression1.compute() - tree2Result;
-		} else if (operator == Operator.DIVISION) {
-			return expression1.compute() / tree2Result;
+			return expression1.compute() + tree2Result;
+		} else {
+			return tree1.compute();
 		}
-
-		return expression1.compute() + tree2Result;
 
 	}
 
