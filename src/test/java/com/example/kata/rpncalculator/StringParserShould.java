@@ -50,9 +50,7 @@ public class StringParserShould {
 				aNew().
 						withOperator(SUM).
 						withOperands(
-								aNew().
-										withOperator(MINUS).
-										withOperands(1, 3),
+								aNew().withOperator(MINUS).withOperands(1, 3),
 								aNew().withExpression(2))
 						.build()));
 	}
@@ -65,9 +63,7 @@ public class StringParserShould {
 						withOperator(SUM).
 						withOperands(
 								aNew().withExpression(2),
-								aNew().
-										withOperator(MINUS).
-										withOperands(1, 3))
+								aNew().withOperator(MINUS).withOperands(1, 3))
 						.build()));
 	}
 
