@@ -33,18 +33,13 @@ public class OperationTreeNode extends OperationTreeLeaf implements Computable{
 
 	@Override
 	public Constant compute() {
-
-		int computedValue;
 		if (operator.isPresent()) {
-			computedValue = tree1.compute().apply(
+			return tree1.compute().apply(
 					this.operator.get(),
-					tree2.compute()).value();
+					tree2.compute());
 		} else {
-			computedValue = tree1.compute().value();
+			return tree1.compute();
 		}
-
-		return Constant.from(computedValue);
-
 	}
 
 	@Override
