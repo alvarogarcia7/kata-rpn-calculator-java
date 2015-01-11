@@ -49,11 +49,10 @@ public class OperationTreeApplierShould {
 		OperationTree TREE_WITH_TWO_EXPRESSIONS = aNew().
 				withOperator(SUM).
 				withOperands(
-						aNew().withExpression(2).build(),
+						aNew().withExpression(2),
 						aNew().
 								withOperator(MINUS).
-								withOperands(1, 3).
-								build())
+								withOperands(1, 3))
 				.build();
 		assertThat(sut.applyOn(TREE_WITH_TWO_EXPRESSIONS), is(0));
 	}
@@ -64,11 +63,10 @@ public class OperationTreeApplierShould {
 		OperationTree TREE_WITH_TWO_EXPRESSIONS = aNew().
 				withOperator(SUM).
 				withOperands(
-						aNew().withExpression(2).build(),
+						aNew().withExpression(2),
 						aNew().
 								withOperator(SUM).
-								withOperands(1, 3).
-								build())
+								withOperands(1, 3))
 				.build();
 		assertThat(sut.applyOn(TREE_WITH_TWO_EXPRESSIONS), is(6));
 	}
@@ -80,8 +78,8 @@ public class OperationTreeApplierShould {
 				aNew().
 						withOperator(MINUS).
 						withOperands(
-								aNew().withOperator(SUM).withOperands(1,2).build(),
-								aNew().withOperator(TIMES).withOperands(3,4).build()
+								aNew().withOperator(SUM).withOperands(1,2),
+								aNew().withOperator(TIMES).withOperands(3,4)
 						).build();
 		assertThat(sut.applyOn(TREE_WITH_THREE_EXPRESSIONS), is(-9));
 	}

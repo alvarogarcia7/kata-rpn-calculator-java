@@ -33,9 +33,9 @@ public class OperationTreeBuilder {
 
 	}
 
-	public OperationTreeBuilder withOperands(OperationTree operand1, OperationTree operand2) {
-		this.tree1 = operand1;
-		this.tree2 = operand2;
+	public OperationTreeBuilder withOperands(OperationTreeBuilder operand1, OperationTreeBuilder operand2) {
+		this.tree1 = operand1.build();
+		this.tree2 = operand2.build();
 		return this;
 	}
 
