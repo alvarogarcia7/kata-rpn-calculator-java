@@ -5,12 +5,13 @@ import java.util.Optional;
 /**
  * Created by alvaro on 10/01/15.
  */
-public class OperationTreeNode extends OperationTreeLeaf implements Computable{
+public class OperationTreeNode implements Computable{
 	private final Optional<Operator> operator;
+	private final Computable tree1;
 	private final Computable tree2;
 
 	public OperationTreeNode(Operator operator, Computable tree1, Computable tree2) {
-		super(tree1);
+		this.tree1 = tree1;
 		this.tree2 = tree2;
 		this.operator = Optional.of(operator);
 	}
