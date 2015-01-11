@@ -6,7 +6,6 @@ import java.util.Optional;
  * Created by alvaro on 10/01/15.
  */
 public class OperationTreeNode extends OperationTreeLeaf implements Computable{
-	static final OperationTreeNode EMPTY = null;
 	private final Optional<Operator> operator;
 	private final Computable tree2;
 
