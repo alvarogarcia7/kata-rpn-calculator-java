@@ -19,8 +19,8 @@ public class OperationTreeBuilder {
 	}
 
 	public OperationTreeBuilder withOperands(int operand1, int operand2) {
-		this.tree1 = Expression.constant(operand1);
-		this.tree2 = Expression.constant(operand2);
+		this.tree1 = Constant.from(operand1);
+		this.tree2 = Constant.from(operand2);
 		return this;
 	}
 
@@ -28,7 +28,7 @@ public class OperationTreeBuilder {
 		if(null == constant) {
 			return new OperationTreeNode(operator, tree1, tree2);
 		} else {
-			return Expression.constant(constant);
+			return Constant.from(constant);
 		}
 
 	}

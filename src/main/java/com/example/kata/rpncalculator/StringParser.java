@@ -41,7 +41,7 @@ public class StringParser {
 	}
 
 	private Computable getConstantFrom(String part) {
-		return Expression.constant(parseNumber(part));
+		return Constant.from(parseNumber(part));
 	}
 
 	private char getOperatorFrom(String part) {
