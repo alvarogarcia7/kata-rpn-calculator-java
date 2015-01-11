@@ -51,12 +51,6 @@ public class OperationTree {
 	}
 
 	public Integer compute() {
-
-		Integer tree2Result = 1;
-		if (null != tree2) {
-			tree2Result = tree2.compute();
-		}
-
 		Integer tree1Result;
 		if (expression1 == null) {
 			tree1Result = tree1.compute();
@@ -65,6 +59,8 @@ public class OperationTree {
 		}
 
 		if (operator.isPresent()) {
+			Integer tree2Result = tree2.compute();
+
 			Operator operator = this.operator.get();
 			if (operator == Operator.TIMES) {
 				return tree1Result * tree2Result;
