@@ -59,6 +59,21 @@ public class StringParserShould {
 	}
 
 	@Test
+	public void parse_two_expressions_2() {
+
+		assertThat(sut.parse("2 1 3 - +"), equalTo(
+				aNew().
+						withOperator(SUM).
+						withOperands(
+								new OperationTree(Expression.constant(2)),
+								aNew().
+										withOperator(MINUS).
+										withOperands(1, 3).
+										build())
+						.build()));
+	}
+
+	@Test
 	public void parse_three_operators_and_two_expressions() {
 
 		assertThat(sut.parse("1 2 + 3 4 * -"), equalTo(
