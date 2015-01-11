@@ -8,57 +8,21 @@ import java.util.Stack;
  */
 public class StringParser {
 
-	public static final int TWO_EXPRESSIONS_LENGTH = 9;
-
 	public OperationTree parse(String operationChain) {
-		OperationTree parsedInStack = parseInAStack(operationChain);
-		OperationTree operationTree;
-		if(operationChain.length() < TWO_EXPRESSIONS_LENGTH) {
-			return parsedInStack;
-		} else if(operationChain.length() == TWO_EXPRESSIONS_LENGTH){
-			operationTree=new OperationTree(
-					lastOperator(operationChain),
-					Expression.constant(parseNumber(operationChain.charAt(6))),
-					parseSubString(operationChain, 0));
-			return parsedInStack;
-		} else {
-			OperationTree tree1 = parseSubString(operationChain, 0);
-			OperationTree tree2 = parseSubString(operationChain, 6);
-			operationTree = new OperationTree(lastOperator(operationChain), tree1, tree2);
-		}
-
-		return operationTree;
-
+		return parseInAStack(operationChain);
 	}
 
 	private OperationTree parseInAStack(String operationChain) {
-
-		Stack<String> tokenStack = new Stack<>();
 
 		String[] parts = operationChain.split(" +");
 		Stack<OperationTree> operationStack = new Stack<>();
 		for (String current : parts) {
 			if (isOperator(current)) {
-				if(tokenStack.isEmpty()){
-					operationStack.push(new OperationTree(operator(current),
-							operationStack.pop(),
-							operationStack.pop()));
-				}else {
-					if(tokenStack.size() == 1){
-						operationStack.push(new OperationTree(operator(current),
-								expression(tokenStack.pop()),
-								operationStack.pop()
-						));
-					} else {
-						final String argument2 = tokenStack.pop();
-						operationStack.push(new OperationTree(operator(current),
-								expression(tokenStack.pop()),
-								expression(argument2)
-						));
-					}
-				}
+				OperationTree tmp = operationStack.pop();
+				operationStack.push(new OperationTree(operator(current),
+						operationStack.pop(), tmp));
 			} else {
-				tokenStack.push(current);
+				operationStack.push(new OperationTree(expression(current)));
 			}
 		}
 

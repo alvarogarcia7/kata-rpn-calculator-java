@@ -37,6 +37,14 @@ public class OperationTree {
 		expression2 = null;
 	}
 
+	public OperationTree(Expression constant) {
+		tree1 = OperationTree.EMPTY;
+		tree2 = OperationTree.EMPTY;
+		expression1 = constant;
+		expression2 = null;
+		operator = Optional.empty();
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -65,26 +73,35 @@ public class OperationTree {
 
 	public Integer compute() {
 
-		Integer tree2Result;
-		if(tree2 == null) {
-			tree2Result = expression2.compute();
+		Integer tree2Result = 1;
+		if (tree2 == null) {
+			if(expression2 != null) {
+				tree2Result = expression2.compute();
+			}
 		} else {
 			tree2Result = tree2.compute();
 		}
 
-		if(operator.isPresent()) {
+		Integer tree1Result = null;
+		if (expression1 == null) {
+			tree1Result = tree1.compute();
+		} else {
+			tree1Result = expression1.compute();
+		}
+
+		if (operator.isPresent()) {
 			Operator operator = this.operator.get();
 			if (operator == Operator.TIMES) {
-				return expression1.compute() * tree2Result;
+				return tree1Result * tree2Result;
 			} else if (operator == Operator.MINUS) {
-				return expression1.compute() - tree2Result;
+				return tree1Result - tree2Result;
 			} else if (operator == Operator.DIVISION) {
-				return expression1.compute() / tree2Result;
+				return tree1Result / tree2Result;
 			}
-
-			return expression1.compute() + tree2Result;
+			System.out.println(this);
+			return tree1Result + tree2Result;
 		} else {
-			return tree1.compute();
+			return tree1Result;
 		}
 
 	}
