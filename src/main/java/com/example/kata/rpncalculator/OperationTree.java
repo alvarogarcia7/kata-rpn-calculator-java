@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * Created by alvaro on 10/01/15.
  */
-public class OperationTree {
+public class OperationTree implements Computable{
 	static final OperationTree EMPTY = null;
 	private final Expression expression1;
 	private final Optional<Operator> operator;
@@ -84,5 +84,10 @@ public class OperationTree {
 				", t1=" + tree1 +
 				", t2=" + tree2 +
 				'}';
+	}
+
+	@Override
+	public Integer calculate() {
+		return compute();
 	}
 }
