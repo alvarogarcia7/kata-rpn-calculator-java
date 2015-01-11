@@ -48,7 +48,7 @@ public class Constant implements Computable{
 		return number;
 	}
 
-	public Constant apply(Operator operator, Constant other) {
+	public Constant applyOperator(Operator operator, Constant other) {
 		int computedValue;
 		int otherNumber = other.value();
 		if (operator == Operator.TIMES) {

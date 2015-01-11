@@ -34,7 +34,7 @@ public class OperationTreeNode extends OperationTreeLeaf implements Computable{
 	@Override
 	public Constant compute() {
 		if (operator.isPresent()) {
-			return tree1.compute().apply(
+			return tree1.compute().applyOperator(
 					this.operator.get(),
 					tree2.compute());
 		} else {
