@@ -53,12 +53,11 @@ public class OperationTree {
 	public Integer compute() {
 
 		Integer tree2Result = 1;
-		if (tree2 == null) {
-		} else {
+		if (null != tree2) {
 			tree2Result = tree2.compute();
 		}
 
-		Integer tree1Result = null;
+		Integer tree1Result;
 		if (expression1 == null) {
 			tree1Result = tree1.compute();
 		} else {
