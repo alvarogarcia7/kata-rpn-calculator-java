@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static com.example.kata.rpncalculator.OperationTreeBuilder.aNew;
 import static com.example.kata.rpncalculator.Operator.*;
+import static com.example.kata.rpncalculator.tools.OperationTreeBuilderRepository.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -45,38 +46,16 @@ public class StringParserShould {
 
 	@Test
 	public void parse_two_expressions() {
-
-		assertThat(sut.parse("1 3 - 2 +"), equalTo(
-				aNew().
-						withOperator(SUM).
-						withOperands(
-								aNew().withOperator(MINUS).withOperands(1, 3),
-								aNew().withExpression(2))
-						.build()));
+		assertThat(sut.parse("1 3 - 2 +"), equalTo(TREE_SUM_MINUS_1_3_2));
 	}
 
 	@Test
 	public void parse_two_expressions_2() {
-
-		assertThat(sut.parse("2 1 3 - +"), equalTo(
-				aNew().
-						withOperator(SUM).
-						withOperands(
-								aNew().withExpression(2),
-								aNew().withOperator(MINUS).withOperands(1, 3))
-						.build()));
+		assertThat(sut.parse("2 1 3 - +"), equalTo(TREE_SUM_2_MINUS_1_3));
 	}
 
 	@Test
 	public void parse_three_operators_and_two_expressions() {
-
-		assertThat(sut.parse("1 2 + 3 4 * -"), equalTo(
-				aNew().
-						withOperator(MINUS).
-						withOperands(
-								aNew().withOperator(SUM).withOperands(1,2),
-								aNew().withOperator(TIMES).withOperands(3,4)
-						).build()
-		));
+		assertThat(sut.parse("1 2 + 3 4 * -"), equalTo(TREE_WITH_THREE_EXPRESSIONS));
 	}
 }
