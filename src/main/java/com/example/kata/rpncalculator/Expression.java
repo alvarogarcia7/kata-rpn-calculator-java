@@ -15,6 +15,7 @@ public class Expression implements Computable{
 		return new Expression(number);
 	}
 
+	@Override
 	public Integer compute() {
 		return this.number;
 	}
@@ -43,8 +44,4 @@ public class Expression implements Computable{
 		return number;
 	}
 
-	@Override
-	public Integer calculate() {
-		return compute();
-	}
 }

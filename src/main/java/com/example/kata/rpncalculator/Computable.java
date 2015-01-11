@@ -5,5 +5,5 @@ package com.example.kata.rpncalculator;
  */
 public interface Computable {
 
-	Integer calculate();
+	Integer compute();
 }

@@ -38,12 +38,13 @@ public class OperationTree implements Computable{
 	}
 
 
+	@Override
 	public Integer compute() {
 		Integer tree1Result;
-			tree1Result = tree1.calculate();
+			tree1Result = tree1.compute();
 
 		if (operator.isPresent()) {
-			Integer tree2Result = tree2.calculate();
+			Integer tree2Result = tree2.compute();
 
 			Operator operator = this.operator.get();
 			if (operator == Operator.TIMES) {
@@ -83,8 +84,4 @@ public class OperationTree implements Computable{
 		}
 	}
 
-	@Override
-	public Integer calculate() {
-		return compute();
-	}
 }
