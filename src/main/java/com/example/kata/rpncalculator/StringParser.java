@@ -20,6 +20,7 @@ public class StringParser {
 					lastOperator(operationChain),
 					Expression.constant(parseNumber(operationChain.charAt(6))),
 					parseSubString(operationChain, 0));
+			return parsedInStack;
 		} else {
 			OperationTree tree1 = parseSubString(operationChain, 0);
 			OperationTree tree2 = parseSubString(operationChain, 6);
@@ -32,22 +33,36 @@ public class StringParser {
 
 	private OperationTree parseInAStack(String operationChain) {
 
-		Stack<String> tokenStack = getTokens(operationChain);
+		Stack<String> tokenStack = new Stack<>();
 
 		String[] parts = operationChain.split(" +");
+		Stack<OperationTree> operationStack = new Stack<>();
 		for (String current : parts) {
-			if (!isOperator(current)) {
-				tokenStack.push(current);
+			if (isOperator(current)) {
+				if(tokenStack.isEmpty()){
+					operationStack.push(new OperationTree(operator(current),
+							operationStack.pop(),
+							operationStack.pop()));
+				}else {
+					if(tokenStack.size() == 1){
+						operationStack.push(new OperationTree(operator(current),
+								expression(tokenStack.pop()),
+								operationStack.pop()
+						));
+					} else {
+						final String argument2 = tokenStack.pop();
+						operationStack.push(new OperationTree(operator(current),
+								expression(tokenStack.pop()),
+								expression(argument2)
+						));
+					}
+				}
 			} else {
-				final String argument2 = tokenStack.pop();
-				return new OperationTree(operator(current),
-						expression(tokenStack.pop()),
-						expression(argument2)
-				);
+				tokenStack.push(current);
 			}
 		}
 
-		return OperationTree.EMPTY;
+		return operationStack.pop();
 
 
 	}
