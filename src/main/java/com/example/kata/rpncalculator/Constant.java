@@ -47,4 +47,19 @@ public class Constant implements Computable{
 	public int value() {
 		return number;
 	}
+
+	public Constant apply(Operator operator, Constant other) {
+		int computedValue;
+		int otherNumber = other.value();
+		if (operator == Operator.TIMES) {
+			computedValue = number * otherNumber;
+		} else if (operator == Operator.MINUS) {
+			computedValue = number - otherNumber;
+		} else if (operator == Operator.DIVISION) {
+			computedValue =  number / otherNumber;
+		} else {
+			computedValue = number + otherNumber;
+		}
+		return Constant.from(computedValue);
+	}
 }

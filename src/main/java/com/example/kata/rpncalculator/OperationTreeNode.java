@@ -33,24 +33,14 @@ public class OperationTreeNode extends OperationTreeLeaf implements Computable{
 
 	@Override
 	public Constant compute() {
-		int tree1Result = tree1.compute().value();
 
 		int computedValue;
 		if (operator.isPresent()) {
-			int tree2Result = tree2.compute().value();
-
-			Operator operator = this.operator.get();
-			if (operator == Operator.TIMES) {
-				computedValue = tree1Result * tree2Result;
-			} else if (operator == Operator.MINUS) {
-				computedValue = tree1Result - tree2Result;
-			} else if (operator == Operator.DIVISION) {
-				computedValue =  tree1Result / tree2Result;
-			} else {
-				computedValue = tree1Result + tree2Result;
-			}
+			computedValue = tree1.compute().apply(
+					this.operator.get(),
+					tree2.compute()).value();
 		} else {
-			computedValue = tree1Result;
+			computedValue = tree1.compute().value();
 		}
 
 		return Constant.from(computedValue);
