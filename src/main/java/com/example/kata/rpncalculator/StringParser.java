@@ -21,15 +21,15 @@ public class StringParser {
 				operationStack.push(new OperationTreeNode(operator(current),
 						operationStack.pop(), tmp));
 			} else {
-				operationStack.push(expression(current));
+				operationStack.push(constant(current));
 			}
 		}
 
 		return operationStack.pop();
 	}
 
-	private Computable expression(String current) {
-		return getConstantFrom(current);
+	private Computable constant(String current) {
+		return Constant.from(parseNumber(current));
 	}
 
 	private Operator operator(String current) {
@@ -38,10 +38,6 @@ public class StringParser {
 
 	private boolean isOperator(String token) {
 		return Operator.isOne(token);
-	}
-
-	private Computable getConstantFrom(String part) {
-		return Constant.from(parseNumber(part));
 	}
 
 	private char getOperatorFrom(String part) {
