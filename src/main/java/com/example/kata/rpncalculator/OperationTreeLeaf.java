@@ -11,7 +11,7 @@ public class OperationTreeLeaf implements Computable{
 	}
 
 	@Override
-	public Integer compute() {
+	public Constant compute() {
 		return tree1.compute();
 	}
 

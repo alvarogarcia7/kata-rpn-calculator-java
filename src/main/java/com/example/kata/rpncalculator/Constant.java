@@ -16,8 +16,8 @@ public class Constant implements Computable{
 	}
 
 	@Override
-	public Integer compute() {
-		return this.number;
+	public Constant compute() {
+		return this;
 	}
 
 	@Override
@@ -44,4 +44,7 @@ public class Constant implements Computable{
 		return number;
 	}
 
+	public int value() {
+		return number;
+	}
 }
